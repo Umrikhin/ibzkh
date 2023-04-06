@@ -1,0 +1,26 @@
+﻿@model List<Profit>
+@{
+    ViewBag.Title = "Начисления";
+}
+@section headerSection
+{
+
+}
+<div class="m-1 p-1">
+    <h2>ЛС: @ViewBag.NumBill</h2>
+    <div class="p-1"><a class="btn btn-primary mb-1" asp-action="Index" asp-controller="Home">К списку помещений</a></div>
+    @if (TempData["errorCreate"] != null)
+    {
+        <div class="alert alert-danger">
+            <strong>Ошибка!</strong> @TempData["errorCreate"]
+        </div>
+    }
+    <form class="p-1" asp-action="Create" method="post">
+        <input type="hidden" name="IdRoom" value="@ViewBag.IdRoom" />
+        <button type="submit" class="btn btn-info">Добавить начисление</button>
+    </form>
+    @foreach (var item in Model)
+    {
+        <div class="p-1"><partial name="_Profit" , model="@item" /></div>
+    }
+</div>

@@ -1,0 +1,41 @@
+﻿@model List<Profit>
+@{
+    ViewBag.Title = "Состояние лицевого счета";
+}
+@section headerSection
+{
+    
+}
+<div class="m-1 p-1">
+    <h2>ЛС: @ViewBag.NumBill</h2>
+    <a class="btn btn-primary mb-2" asp-action="Index" asp-controller="Home">К списку помещений</a>
+    <form method="post" asp-action="GetDataStatus">
+        <div name="errList" asp-validation-summary="All"></div>
+        <input type="hidden" name="Id" value="@ViewBag.IdRoom" />
+        <div class="row mb-2">
+            <div class="col-1">
+                <div class="form-group">
+                    <label>Период:</label>
+                    <select asp-items=@ViewBag.Years class="form-select" name="Period" onchange="this.form.submit();"></select>
+                </div>
+            </div>
+        </div>
+    </form>
+    <table class="table table-striped table-bordered">
+        <thead class="table-primary">
+            <tr><th>Месяц</th><th>Вх. сальдо</th><th>Начислено</th><th>Оплачено</th><th>Исх. сальдо</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var row in Model)
+            {
+                <tr>
+                    <td>@(new DateTime(row.Year, row.Month, 1).ToString("MMMM"))</td>
+                    <td>@string.Format("{0:0.##}", row.InBalance)</td>
+                    <td>@string.Format("{0:0.##}", row.Accrued)</td>
+                    <td>@string.Format("{0:0.##}", row.Pay)</td>
+                    <td>@string.Format("{0:0.##}", row.OutBalance)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

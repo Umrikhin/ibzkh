@@ -1,0 +1,15 @@
+﻿@model Profit
+<section class="card">
+    <div class="card-header"><b>ЛС: @ViewBag.NumBill</b></div>
+    <div class="card-body">
+        <div><b>@(new DateTime(Model.Year, Model.Month, 1).ToString("MMMM"))</b></div>
+        <div>Вх. сальдо: @string.Format("{0:0.##}", Model.InBalance)</div>
+        <div>Начислено: @string.Format("{0:0.##}", Model.Accrued)</div>
+        <div>Начислено: @string.Format("{0:0.##}", Model.Pay)</div>
+        <div>Исх. баланс: @string.Format("{0:0.##}", Model.OutBalance)</div>
+        <div>Период: @string.Format("{0}", Model.Year)</div>
+        <div>
+            <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model?.Id" asp-route-IdRoom="@Model?.IdRoom">Внести оплату</a>
+        </div>
+    </div>
+</section>

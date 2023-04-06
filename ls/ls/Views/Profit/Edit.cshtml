@@ -1,0 +1,29 @@
+﻿@model Profit
+@{
+    ViewBag.Title = "Изменить начисление";
+}
+<div class="m-1 p-1">
+    <h2>ЛС: @ViewBag.NumBill</h2>
+    <h3>Внесение оплаты</h3>
+    <div class="row">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="All"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IdRoom" />
+            <input type="hidden" asp-for="Month" />
+            <input type="hidden" asp-for="InBalance" />
+            <input type="hidden" asp-for="Accrued" />
+            <input type="hidden" asp-for="Year" />
+            <div class="form-group col-lg-3">
+                <label asp-for="Pay"></label>
+                <div><span asp-validation-for="Pay"></span></div>
+                <input asp-for="Pay" class="form-control" />
+            </div>
+            <input type="hidden" asp-for="OutBalance" />
+            <button type="submit" class="btn btn-primary mb-2 mt-2">Внести оплату</button>
+        </form>
+    </div>
+    <div>
+        <a asp-action="Index" asp-controller="Profit" asp-route-Id="@ViewBag.IdRoom" class="btn btn-info">Назад к начислениям</a>
+    </div>
+</div>
