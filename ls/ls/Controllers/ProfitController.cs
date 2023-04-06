@@ -59,7 +59,7 @@ namespace ls.Controllers
             model.Accrued = room.Area * tarif;
             //Установка значений по умолчанию для опланено и расчет исходящего баланса
             model.Pay = 0;
-            model.OutBalance = model.Accrued - model.Pay + model.InBalance;
+            model.OutBalance = model.Accrued - model.Pay.Value + model.InBalance;
             try
             {
                 var newId = _profits.AddProfit(model);
@@ -91,7 +91,7 @@ namespace ls.Controllers
                 try
                 {
                     //Расчет исходящего сальдо после внесения оплаты
-                    model.OutBalance = model.Accrued - model.Pay + model.InBalance;
+                    model.OutBalance = model.Accrued - model.Pay.Value + model.InBalance;
                     var error = _profits.EditProfit(model);
                     return RedirectToAction("Index", "Profit", new { Id = model.IdRoom });
                 }

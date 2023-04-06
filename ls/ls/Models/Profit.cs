@@ -23,7 +23,7 @@ namespace ls.Models
 
         [Display(Name = "Оплачено")]
         [Required(ErrorMessage = "Заполните поле оплачено")]
-        public double Pay { get; set; } //Оплачено
+        public double? Pay { get; set; } //Оплачено
 
         [Display(Name = "Исх. сальдо")]
         [Required(ErrorMessage = "Заполните исх. сальдо")]
